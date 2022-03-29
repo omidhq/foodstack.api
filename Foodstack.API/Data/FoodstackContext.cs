@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Foodstack.API.Models;
 
-    public class FoodstackContext : DbContext
-    {
-        public FoodstackContext (DbContextOptions<FoodstackContext> options)
-            : base(options)
-        {
-        }
+public class FoodstackContext : DbContext
+{
+  public FoodstackContext(DbContextOptions<FoodstackContext> options)
+      : base(options)
+  {
+  }
 
-        public DbSet<Foodstack.API.Models.Ingredient> Ingredient { get; set; }
-    }
+  public DbSet<Foodstack.API.Models.Ingredient> Ingredients { get; set; }
+}
