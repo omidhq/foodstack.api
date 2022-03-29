@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Foodstack.API.Models;
+using Foodstack.API.Services;
 
 namespace Foodstack.API.Controllers
 {
@@ -15,10 +16,19 @@ namespace Foodstack.API.Controllers
   public class SearchController : ControllerBase
   {
     private readonly FoodstackContext _context;
+    private readonly ISpoonacularClient _client;
 
-    public SearchController(FoodstackContext context)
+    public SearchController(FoodstackContext context, ISpoonacularClient client)
     {
       _context = context;
+      _client = client;
+    }
+
+    [HttpGet("recipe")]
+    public async Task<ActionResult<IEnumerable<RecipeResponse>>> GetRecipes()
+    {
+      string[] ingredients = {"apples", "sugar", "flour"};
+      return await _client.GetRecipes(ingredients);
     }
 
     // GET: api/Search
