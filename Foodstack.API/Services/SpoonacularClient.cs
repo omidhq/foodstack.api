@@ -14,7 +14,7 @@ public class SpoonacularClient : ISpoonacularClient
   }
   public async Task<List<RecipeResponse>?> GetRecipes(IEnumerable<string> ingredients)
   {
-    var formattedIngredients = ingredients.Aggregate((current, next) => current += next + ",+");
+    var formattedIngredients = ingredients.Aggregate("", (current, next) => current += next + ",+");
     var requestedIngredients = formattedIngredients.Remove(formattedIngredients.Length - 2);
 
     var client = new HttpClient();
