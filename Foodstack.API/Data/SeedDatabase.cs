@@ -11,12 +11,14 @@ public static class SeedData
             DbContextOptions<FoodstackContext>>()))
     {
 
-      if (context.Ingredients.Any() || !File.Exists(@"Data\ingredients.txt"))
+      var filePath = Path.Combine("Data", "ingredients.txt");
+
+      if (context.Ingredients.Any() || !File.Exists(filePath))
       {
         return;
       }
 
-      var allLines = File.ReadAllLines(@"Data\ingredients.txt");
+      var allLines = File.ReadAllLines(filePath);
 
       foreach (var ingredientStr in allLines)
       {
