@@ -21,7 +21,7 @@ public class SpoonacularClient : ISpoonacularClient
     client.DefaultRequestHeaders.Accept.Clear();
     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-    var url = @$"https://api.spoonacular.com/recipes/findByIngredients?ingredients={requestedIngredients}&apiKey={_key}";
+    var url = @$"https://api.spoonacular.com/recipes/findByIngredients?ingredients={requestedIngredients}&number=100&apiKey={_key}";
     var response = await client.GetStreamAsync(url);
 
     return JsonSerializer.Deserialize<List<RecipeResponse>>(response);
