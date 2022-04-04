@@ -27,8 +27,15 @@ public class SpoonacularClient : ISpoonacularClient
     return JsonSerializer.Deserialize<List<RecipeResponse>>(response);
   }
 
-  public Task<List<Recipe>> GetRecipesInformation()
+  public async Task<List<Recipe>?> GetRecipesInformation(string ids)
   {
-    throw new NotImplementedException();
+    var client = new HttpClient();
+    client.DefaultRequestHeaders.Accept.Clear();
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+    var url = @$"https://api.spoonacular.com/recipes/informationBulk?ids={ids}&apiKey={_key}";
+    var response = await client.GetStreamAsync(url);
+    
+    return JsonSerializer.Deserialize<List<Recipe>>(response);
   }
 }
