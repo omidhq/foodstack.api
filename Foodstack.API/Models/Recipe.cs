@@ -27,4 +27,6 @@ public class Recipe
 
   [JsonPropertyName("readyInMinutes")]
   public int CookingTimeInMinutes { get; set; }
+  [JsonPropertyName("sourceUrl")]
+  public string? RecipeUrl { get; set; }
 }
