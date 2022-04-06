@@ -38,5 +38,11 @@ namespace Foodstack.API.Controllers
     {
       return await _client.GetRecipesInformation(ids);
     }
+
+    [HttpGet("instructions")]
+    public async Task<ActionResult<IEnumerable<Steps>>> GetRecipeInstructions(string recipeId)
+    {
+      return await _client.GetRecipeInstructions(recipeId);
+    }
   }
 }
