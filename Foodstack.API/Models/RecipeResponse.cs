@@ -13,4 +13,12 @@ public class RecipeResponse
   [JsonPropertyName("image")]
   public string? ImageUrl { get; set; }
 
+  [JsonPropertyName("missedIngredients")]  
+  public List<OtherIngredient>? MissingIngredients { get; set; }
+
+  [JsonPropertyName("unusedIngredients")]  
+  public List<OtherIngredient>? UnusedIngredients { get; set; }
+
+  [JsonPropertyName("usedIngredients")]  
+  public List<OtherIngredient>? UsedIngredients { get; set; }
 }
