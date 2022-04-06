@@ -38,4 +38,16 @@ public class SpoonacularClient : ISpoonacularClient
     
     return JsonSerializer.Deserialize<List<Recipe>>(response);
   }
+
+  public async Task<List<Steps>?> GetRecipeInstructions(string recipeId)
+  {
+    var client = new HttpClient();
+    client.DefaultRequestHeaders.Accept.Clear();
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+    var url = @$"https://api.spoonacular.com/recipes/{recipeId}/analyzedInstructions?apiKey={_key}";
+    var response = await client.GetStreamAsync(url);
+
+    return JsonSerializer.Deserialize<List<Steps>>(response);
+  }
 }
